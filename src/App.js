@@ -1,25 +1,41 @@
-import CreateDay from "./component/CreateDay";
-import CreateWord from "./component/CreateWord.tsx";
-import Day from "./component/Day.tsx";
-import DayList from "./component/DayList.tsx";
-import EmptyPage from "./component/EmptyPage";
-import Header from "./component/Header"
-import {BrowserRouter, Route, Routes} from 'react-router-dom'
+import { useState } from 'react';
+import './App.css';
+import MemoContainer from './component/MemoContainer';
+import SideBar from './component/SideBar/SideBar';
 
 function App() {
+  const [memos, setMemos] = useState([
+    {
+      title: 'Memo1',
+      content: 'This is Memo 1',
+      createdAt: 1737527945083,
+      updatedAt: 1737527945083,
+    },
+    {
+      title: 'Memo2',
+      content: 'This is Memo 2',
+      createdAt: 1737527955926,
+      updatedAt: 1737527955926,
+    },
+  ]);
+
+  const [selectedMemoIndex, setSelectedMemoIndex] = useState(0);
+
+  const setMemo = (newMemo) => {
+    const newMemos = [...memos];
+    newMemos[selectedMemoIndex] = newMemo;
+    setMemos(newMemos);
+  };
+
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Header />
-        <Routes>
-          <Route path="/" element={<DayList />}></Route>
-          <Route path="/day/:day" element={<Day />}></Route>
-          <Route path="/create_word" element={<CreateWord />}></Route>
-          <Route path="/create_day" element={<CreateDay />}></Route>
-          <Route path="*" element={<EmptyPage />}></Route>
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <div className="App">
+      <SideBar
+        memo={memos}
+        setSelectedMemoIndex={setSelectedMemoIndex}
+        selectedMemoIndex={selectedMemoIndex}
+      />
+      <MemoContainer memo={memos[selectedMemoIndex]} setMemo={setMemo} />
+    </div>
   );
 }
 
