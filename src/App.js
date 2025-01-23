@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-import MemoContainer from './component/MemoContainer';
+import MemoContainer from './component/MemoContainer/MemoContainer';
 import SideBar from './component/SideBar/SideBar';
 
 function App() {
@@ -27,12 +27,37 @@ function App() {
     setMemos(newMemos);
   };
 
+  const addMemo = () => {
+    const now = new Date().getTime();
+    setMemos([
+      ...memos,
+      {
+        title: 'Untitled',
+        content: '',
+        createdAt: now,
+        updatedAt: now,
+      },
+    ]);
+    setSelectedMemoIndex(memos.length);
+  };
+
+  const deleteMemo = (idx) => {
+    const newMemos = [...memos];
+    newMemos.splice(idx, 1);
+    setMemos(newMemos);
+    if (idx === selectedMemoIndex) {
+      setSelectedMemoIndex(0);
+    }
+  };
+
   return (
     <div className="App">
       <SideBar
         memo={memos}
         setSelectedMemoIndex={setSelectedMemoIndex}
         selectedMemoIndex={selectedMemoIndex}
+        addMemo={addMemo}
+        deleteMemo={deleteMemo}
       />
       <MemoContainer memo={memos[selectedMemoIndex]} setMemo={setMemo} />
     </div>

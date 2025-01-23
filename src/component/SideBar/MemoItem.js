@@ -1,10 +1,18 @@
-export default function MemoItem({ children, onClick, isSelected }) {
+export default function MemoItem({
+  children,
+  isSelected,
+  onClickItem,
+  onClickDelete,
+}) {
   return (
     <div
       className={'MemoItem' + (isSelected ? ' selected' : '')}
-      onClick={onClick}
+      onClick={onClickItem}
     >
       {children}
+      <button className="delBtn" onClick={onClickDelete}>
+        X
+      </button>
     </div>
   );
 }

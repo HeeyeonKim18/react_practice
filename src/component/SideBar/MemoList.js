@@ -4,14 +4,20 @@ export default function MemoList({
   memo,
   setSelectedMemoIndex,
   selectedMemoIndex,
+  deleteMemo,
 }) {
   return (
     <div className="memoList">
       {memo.map((m, idx) => (
         <MemoItem
           key={idx}
-          onClick={() => {
+          onClickItem={() => {
             setSelectedMemoIndex(idx);
+          }}
+          onClickDelete={(e) => {
+            deleteMemo(idx);
+            e.preventDefault();
+            e.stopPropagation();
           }}
           isSelected={idx === selectedMemoIndex}
         >

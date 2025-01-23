@@ -1,3 +1,3 @@
 export default function SideBarHeader() {
-  return <div className="SideBarHeader">SideBarHeader</div>;
+  return <div className="SideBarHeader">메모장</div>;
 }

@@ -1,0 +1,62 @@
+.SideBar {
+  width: 200px;
+  background-color: rgb(247, 246, 243);
+}
+
+.SideBarHeader {
+  padding: 15px;
+  color: rgb(147, 146, 143);
+  font-weight: 700;
+}
+
+.MemoItem {
+  text-align: left;
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding: 5px 8px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.delBtn {
+  background: none;
+  color: red;
+  border: none;
+  position: absolute;
+  right: 0;
+  top: 7px;
+  cursor: pointer;
+  display: none;
+}
+
+.MemoItem:hover .delBtn {
+  display: inline-block;
+}
+
+.MemoItem.selected {
+  background-color: rgba(100, 100, 100, 0.5);
+  font-weight: 500;
+}
+
+.SideBarFooter {
+  padding: 10px 0;
+}
+
+.inputMemoButton {
+  border: 2px solid #555;
+  border-radius: 100px;
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  font-size: 1.4rem;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  color: #555;
+  opacity: 0.6;
+  cursor: pointer;
+}
